@@ -1,0 +1,56 @@
+{
+  "format": 1,
+  "title": {
+    "en": "Ponytail",
+    "zh": "Ponytail"
+  },
+  "description": {
+    "en": "Ponytail for DeepSeek Harness: a per-session lazy senior dev mode.",
+    "zh": "DeepSeek Harness 上的 Ponytail：按会话开启的懒惰资深开发模式。"
+  },
+  "plugins": [
+    {
+      "name": "dsh-ponytail",
+      "title": {
+        "en": "Ponytail",
+        "zh": "Ponytail"
+      },
+      "description": {
+        "en": "Ponytail for DeepSeek Harness: a per-session lazy senior dev mode, with a band above the prompt and a board of every task.",
+        "zh": "按会话开启的懒惰资深开发模式：最小改动、提示词上方的 band、每个任务一行看板。"
+      },
+      "icon": "icon.svg",
+      "author": "owlzo",
+      "homepage": "https://github.com/owlzo/dsh-ponytail#readme",
+      "repository": {
+        "url": "https://github.com/owlzo/dsh-ponytail"
+      },
+      "keywords": [
+        "dsh",
+        "dsh-plugin",
+        "dsh-bundle",
+        "deepseek-harness",
+        "ponytail",
+        "skill",
+        "agent"
+      ],
+      "dist-tags": {
+        "latest": "0.1.0"
+      },
+      "versions": [
+        {
+          "version": "0.1.0",
+          "publishTimestamp": 1794467551,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/owlzo/dsh-ponytail",
+            "commit": "f6cfbc211fa517da47b85568abc784a10f47fb56"
+          },
+          "engines": {
+            "dsh": "*"
+          }
+        }
+      ]
+    }
+  ]
+}
