@@ -1,0 +1,10 @@
+node_modules/
+.DS_Store
+*.log
+
+# Verbatim React UMD builds for the fixture; fetch with `npm run verify:setup`.
+verify/fixture/react.development.js
+verify/fixture/react-dom.development.js
+
+# Output of `npm run check`.
+verify/last-render.json

@@ -1,0 +1,66 @@
+{
+  "name": "dsh-ponytail",
+  "version": "0.1.0",
+  "description": "Ponytail for DeepSeek Harness: a per-session lazy senior dev mode, with a band above the prompt and a board of every task.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "dsh-bundle",
+    "deepseek-harness",
+    "ponytail",
+    "skill",
+    "agent"
+  ],
+  "homepage": "https://github.com/owlzo/dsh-ponytail#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/owlzo/dsh-ponytail.git"
+  },
+  "bugs": {
+    "url": "https://github.com/owlzo/dsh-ponytail/issues"
+  },
+  "author": "owlzo",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "test": "node --test verify/host.test.mjs",
+    "check": "node verify/render.mjs",
+    "verify:setup": "node scripts/fetch-verify-react.mjs",
+    "index": "node scripts/index.mjs"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-layout"
+      ]
+    }
+  }
+}

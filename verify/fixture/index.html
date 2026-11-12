@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<title>ponytail client fixture</title>
+<style>
+  /* The real token values from ui-theme's design-platform.css, both themes. */
+  :root {
+    --dsh-composer-dock-inset: 8px;
+    --dsh-composer-side-clearance: 0px;
+    --dsh-composer-card-max-width: 860px;
+    --dsh-composer-stack-gap: 8px;
+    --dsw-radius-md: 12px;
+    --dsw-menu-backdrop-filter: none;
+    --dsw-elevation-panel: 0 1px 2px rgba(0, 0, 0, .05);
+    --dsw-specific-menu: rgba(248, 249, 250, .94);
+    --dsw-alias-bg-base: rgb(255, 255, 255);
+    --dsw-alias-bg-layer-1: rgb(255, 255, 255);
+    --dsw-alias-bg-layer-2: rgb(255, 255, 255);
+    --dsw-alias-bg-overlay: rgb(255, 255, 255);
+    --dsw-alias-border-l1: rgba(0, 0, 0, .04);
+    --dsw-alias-border-l2: rgba(0, 0, 0, .1);
+    --dsw-alias-brand-primary: rgb(15, 17, 21);
+    --dsw-alias-label-primary: rgb(15, 17, 21);
+    --dsw-alias-label-primary-foreground: rgb(255, 255, 255);
+    --dsw-alias-label-secondary: rgb(97, 102, 107);
+    --dsw-alias-label-tertiary: rgb(129, 133, 140);
+    --dsw-alias-state-success-primary: rgb(34, 197, 94);
+    --dsw-alias-state-error-primary: rgb(236, 19, 19);
+    --dsw-alias-state-idle-primary: rgb(212, 212, 212);
+    --dsw-alias-interactive-bg-hover: rgba(38, 49, 72, .06);
+    --dsw-alias-interactive-bg-active: rgba(38, 49, 72, .1);
+  }
+  html[data-theme="dark"] {
+    --dsw-specific-menu: rgba(48, 49, 54, .94);
+    --dsw-elevation-panel: 0 1px 2px rgba(0, 0, 0, .4);
+    --dsw-alias-bg-base: rgb(21, 21, 23);
+    --dsw-alias-bg-layer-1: rgb(35, 35, 36);
+    --dsw-alias-bg-layer-2: rgb(44, 44, 46);
+    --dsw-alias-bg-overlay: rgb(44, 44, 46);
+    --dsw-alias-border-l1: rgba(255, 255, 255, .06);
+    --dsw-alias-border-l2: rgba(255, 255, 255, .12);
+    --dsw-alias-brand-primary: rgb(249, 250, 251);
+    --dsw-alias-label-primary: rgb(249, 250, 251);
+    --dsw-alias-label-primary-foreground: rgb(15, 17, 21);
+    --dsw-alias-label-secondary: rgb(207, 211, 214);
+    --dsw-alias-label-tertiary: rgb(173, 178, 184);
+    --dsw-alias-state-success-primary: rgb(34, 197, 94);
+    --dsw-alias-state-error-primary: rgb(242, 90, 90);
+    --dsw-alias-state-idle-primary: rgb(84, 85, 87);
+    --dsw-alias-interactive-bg-hover: rgba(255, 255, 255, .08);
+    --dsw-alias-interactive-bg-active: rgba(255, 255, 255, .14);
+  }
+  html, body { margin: 0; }
+  body {
+    background: var(--dsw-alias-bg-base);
+    color: var(--dsw-alias-label-primary);
+    font-family: Inter, system-ui, sans-serif;
+  }
+  #band-host { width: 760px; padding: 16px; }
+  #board-host { width: 980px; height: 760px; margin: 16px; }
+</style>
+<script src="./react.development.js"></script>
+<script src="./react-dom.development.js"></script>
+<script>
+  window.__registered = []
+  window.__errors = []
+  window.addEventListener('error', event => window.__errors.push(String(event.message)))
+  window.addEventListener('unhandledrejection', event => window.__errors.push('rejection: ' + String(event.reason)))
+
+  // The Harness module table, narrowed to what a client half uses.
+  window.__ModuleLoader__ = { load(definition) { window.__definition = definition } }
+  window.__posts = []
+  const state = { level: 'off', band: true }
+  const tokens = { input: 900000, output: 120000, cacheRead: 200000, cacheWrite: 0 }
+  const BAND = () => ({
+    level: state.level,
+    default: 'full',
+    band: state.band,
+    session: 'session-fixture',
+    project: 'dsh-ponytail',
+    cwd: 'D:/Code/dsh-ponytail',
+    task: {
+      name: '把 ponytail 转成 DSH 插件',
+      model: 'deepseek-v4.1-flash',
+      startedAt: new Date('2026-11-10T16:19:00').getTime(),
+      turns: 12,
+      tokens,
+      totalTokens: tokens.input + tokens.output + tokens.cacheRead,
+      busyMs: 34 * 60000,
+      reused: 5,
+      created: 2,
+      reuse: 71,
+      tests: { state: 'pass', passed: 12, failed: 0 },
+      testsLabel: '12 passed',
+      cost: 1.14,
+      priced: true,
+    },
+  })
+  const day = offset => {
+    const date = new Date(2026, 9, 20 + offset)
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+  }
+  const series = Array.from({ length: 14 }, (_, i) => ({
+    day: day(i),
+    tokens: i === 5 || i === 6 ? 0 : 4000000 + i * 900000,
+    minutes: 30 + i * 4,
+    cost: 1 + i,
+    tasks: i + 1,
+    reuse: i === 5 || i === 6 ? null : 40 + i * 3,
+  }))
+  const rows = Array.from({ length: 6 }, (_, i) => ({
+    key: `row-${i}`,
+    started: `${day(i)} 10:0${i}`,
+    project: 'dsh-ponytail',
+    name: `任务 ${i + 1}`,
+    cost: 1.2,
+    turns: 8 + i,
+    agentMinutes: 20 + i,
+    tokens: 1200000 + i * 100000,
+    output: 120000,
+    reuse: 60 + i,
+    reused: 4,
+    created: 2,
+    session: `session-fixture-${i}`,
+    tests: i === 5 ? '3 failed' : '12 passed',
+    level: 'full',
+    model: 'deepseek-v4.1-flash',
+  }))
+  const BOARD = {
+    dir: 'C:/Users/fixture/AppData/Roaming/ponytail/band',
+    totals: { tasks: 61, minutes: 1213, tokens: 492500000, output: 16800000, cost: 285.3, turns: 486, priced: 58, unpriced: 3, tests: { pass: 54, fail: 4, none: 3 } },
+    series,
+    streak: 6,
+    projects: [ { project: 'dsh-ponytail', tasks: 61, minutes: 1213, tokens: 492500000, cost: 285.3 }, { project: 'bento-home', tasks: 22, minutes: 402, tokens: 132000000, cost: 74.1 }, { project: 'pi-main', tasks: 11, minutes: 143, tokens: 41000000, cost: 21.8 } ],
+    rows,
+    count: 61,
+    priced: true,
+  }
+  window.fetch = async (url, init) => {
+    const path = String(url)
+    if (init && init.method === 'POST') {
+      const body = JSON.parse(init.body || '{}')
+      window.__posts.push({ path, body })
+      if (path.includes('/level')) state.level = body.level
+      if (path.includes('/band')) state.band = body.band !== false
+      return { ok: true, json: async () => ({ ...state }) }
+    }
+    const payload = path.includes('/board') ? BOARD : BAND()
+    return { ok: true, json: async () => payload }
+  }
+</script>
+<script src="../../client.js"></script>
+<script>
+  const React = window.React
+  const ReactDOM = window.ReactDOM
+  const captured = []
+  const ctx = {
+    get(name) {
+      if (name === 'layout') return { selectPanel: id => { window.__selectedPanel = id } }
+      if (name === 'uiWorkspace') return { openSession: id => { window.__openedSession = id } }
+      if (name === 'locale') return { register: () => () => {}, bind: () => key => key }
+      return undefined
+    },
+    effect(fn) { const disposer = fn(); return typeof disposer === 'function' ? disposer : () => {} },
+    slots: {
+      inject(_name, register) { register() },
+      register(options, component) { captured.push({ options, component }); return () => {} },
+    },
+  }
+  const plugin = window.__definition.factory(name => (name === 'react' ? React : undefined))
+  plugin.apply(ctx)
+
+  const Band = captured[0].component
+  const BoardIcon = captured[1].component
+  const Board = captured[2].component
+
+  window.__fixture = {
+    captured: captured.map(entry => entry.options),
+    setTheme(theme) { document.documentElement.dataset.theme = theme },
+    mountBand() {
+      const props = {
+        session: { sessionId: 'session-fixture' },
+        sessionId: 'session-fixture',
+        inputActions: {
+          setDraft: text => { window.__draft = text },
+          submit: () => { window.__submitted = window.__draft },
+        },
+      }
+      ReactDOM.createRoot(document.getElementById('band-host')).render(React.createElement(Band, props))
+    },
+    mountBoard() {
+      try {
+        ReactDOM.createRoot(document.getElementById('board-host')).render(React.createElement(Board, {}))
+      } catch (error) {
+        window.__errors.push('mountBoard: ' + String((error && error.stack) || error))
+      }
+    },
+    mountIcon() {
+      const host = document.getElementById('icon-host') ?? document.body.appendChild(Object.assign(document.createElement('div'), { id: 'icon-host' }))
+      ReactDOM.createRoot(host).render(React.createElement(BoardIcon, { size: 20, active: false }))
+    },
+  }
+</script>
+</head>
+<body>
+  <div id="band-host"></div>
+  <div id="board-host"></div>
+</body>
+</html>
