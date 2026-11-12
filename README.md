@@ -1,11 +1,27 @@
 # dsh-ponytail
 
+English | [中文](README.zh.md)
+
 Ponytail as a DeepSeek Harness plugin: a per-session lazy-senior-dev mode, the
 `/ponytail` command family, the band above the prompt, and a board of every task.
 
-Converted from [owlzo/ponytail](https://github.com/owlzo/ponytail) 5.3.3 (MIT).
+Converted from [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) 5.3.3 (MIT).
 The six skills, the rules text, the level semantics, the `shortcut:` debt
 ledger, and the band/board metrics keep upstream's shape.
+
+## Why it is lighter
+
+Ponytail is one prompt and one ladder: before writing code, stop at the first rung
+that holds — does it need to exist, is it already here, does the standard library
+do it, is it one line. The published benchmark of the upstream prompt, measured in
+Claude Code against the same agent without it:
+
+![Ponytail's share of the no-skill baseline: 47% of the code, 55% of the output tokens, 74% of the cost, 59% of the time](docs/gain.svg)
+
+These are upstream's figures for the prompt in Claude Code, not a measurement of
+this plugin on DeepSeek Harness; the plugin ships that prompt and reports what a
+session actually spends, so you can check the same four numbers on your own work
+in the band and the board.
 
 ## Install
 
@@ -33,6 +49,9 @@ plugin_manager install_bundle target=<this directory>
 在“发现”里点安装。装好后在会话里打开 ponytail 横条右侧的开关才会生效。
 
 ## What it does
+
+![How one session flows through the plugin: the switch turns on rules and metrics, which feed the band and the board](docs/flow.svg)
+
 
 | Surface | Where | What |
 |---|---|---|
@@ -128,5 +147,5 @@ fetches them.
 ## License
 
 MIT, same as upstream. The rules, skills and command semantics come from
-owlzo/ponytail; the Harness integration is new. `LICENSE` keeps upstream's
+DietrichGebert/ponytail; the Harness integration is new. `LICENSE` keeps upstream's
 copyright notice because this package ships upstream's skill text verbatim.

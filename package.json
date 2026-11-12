@@ -1,6 +1,6 @@
 {
   "name": "dsh-ponytail",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Ponytail for DeepSeek Harness: a per-session lazy senior dev mode, with a band above the prompt and a board of every task.",
   "type": "module",
   "main": "index.js",
@@ -20,6 +20,8 @@
     "icon.svg",
     "skills",
     "README.md",
+    "README.zh.md",
+    "docs",
     "LICENSE"
   ],
   "keywords": [

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 250" width="720" height="250" role="img" aria-label="How the plugin flows: session switch to rules and metrics, then the band and the board">
+  <rect x="0" y="0" width="720" height="250" rx="12" fill="#f8f9fb"/>
+  <rect x="0.5" y="0.5" width="719" height="249" rx="12" fill="none" stroke="#e3e7ee"/>
+
+  <g font-family="-apple-system, Segoe UI, system-ui, sans-serif">
+    <text x="24" y="34" font-size="16" font-weight="600" fill="#111827">One session, one switch</text>
+    <text x="24" y="54" font-size="12" fill="#6b7280">Off by default. Nothing is injected until the session is switched on.</text>
+
+    <!-- Session -->
+    <rect x="24" y="76" width="164" height="86" rx="10" fill="#ffffff" stroke="#d1d5db"/>
+    <text x="40" y="102" font-size="13" font-weight="600" fill="#111827">Session</text>
+    <text x="40" y="120" font-size="11" fill="#6b7280">level: off · full</text>
+    <rect x="40" y="132" width="30" height="16" rx="8" fill="#22c55e"/>
+    <circle cx="62" cy="140" r="6" fill="#ffffff"/>
+    <text x="78" y="144" font-size="11" fill="#6b7280">switch</text>
+
+    <!-- arrows to the two folds -->
+    <path d="M188 106 H216" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#a)"/>
+    <path d="M188 140 H216" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#a)"/>
+
+    <!-- Rules -->
+    <rect x="222" y="76" width="216" height="86" rx="10" fill="#ffffff" stroke="#d1d5db"/>
+    <text x="238" y="102" font-size="13" font-weight="600" fill="#111827">Rules</text>
+    <text x="238" y="120" font-size="11" fill="#6b7280">system prompt section</text>
+    <text x="238" y="136" font-size="11" fill="#6b7280">ponytail:rules</text>
+    <text x="238" y="152" font-size="11" fill="#6b7280">only while the session is on</text>
+
+    <!-- Metrics -->
+    <rect x="222" y="178" width="216" height="52" rx="10" fill="#ffffff" stroke="#d1d5db"/>
+    <text x="238" y="198" font-size="13" font-weight="600" fill="#111827">Metrics</text>
+    <text x="238" y="216" font-size="11" fill="#6b7280">folded from the session log</text>
+
+    <!-- Band -->
+    <rect x="470" y="76" width="226" height="86" rx="10" fill="#ffffff" stroke="#d1d5db"/>
+    <text x="486" y="102" font-size="13" font-weight="600" fill="#111827">Band</text>
+    <text x="486" y="120" font-size="11" fill="#6b7280">one 36px row above the prompt</text>
+    <text x="486" y="136" font-size="11" fill="#6b7280">turns · tokens · cache · tests</text>
+    <text x="486" y="152" font-size="11" fill="#6b7280">switch and level chips</text>
+
+    <!-- Board -->
+    <rect x="470" y="178" width="226" height="52" rx="10" fill="#ffffff" stroke="#d1d5db"/>
+    <text x="486" y="198" font-size="13" font-weight="600" fill="#111827">Board</text>
+    <text x="486" y="216" font-size="11" fill="#6b7280">one CSV row per task, charts</text>
+
+    <!-- arrows -->
+    <path d="M438 96 H462" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#a)"/>
+    <path d="M438 146 V196 H462" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#a)"/>
+  </g>
+
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+</svg>
